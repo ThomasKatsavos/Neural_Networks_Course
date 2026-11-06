@@ -112,7 +112,7 @@ def symmetric_poison(labels, p):
     idx  = torch.randperm(n, device=labels.device)[:n_poison]
     orig = labels[idx]                                                     # (n_poison,)
 
-    # rand στο [0, N-2] = [0, 98]. Αν rand μεγαλύτερο/ισο του αρχικού, μετατόπιση +1 → [0,99]
+    # rand στο [0, N-2] = [0, 98]. Αν rand μεγαλύτερο/ισο του αρχικού, μετατόπιση +1 -> [0,99]
     rand = torch.randint(0, N_CLASSES - 1, (n_poison,), device=labels.device)
     rand = torch.where(rand >= orig, rand + 1, rand)
 
@@ -121,7 +121,7 @@ def symmetric_poison(labels, p):
 
 
 def asymmetric_poison(labels, p):
-    #Asymmetric (semantic) label noise:
+    #Asymmetric label noise:
     #Επιλέγει τυχαία int(N*p) δείγματα και αντικαθιστά το label τους
     #με ένα τυχαίο διαφορετικό label της ίδιας superclass (20 superclasses × 5 classes).
     
