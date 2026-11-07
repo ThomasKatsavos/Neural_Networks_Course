@@ -14,9 +14,8 @@ The instructions cover the execution of the code on Aristotelis cluster only.
 ``` git clone https://github.com/ThomasKatsavos/Neural_Networks_Course```
 You can also just update it in case it is already cloned.
 
-2. After changing the cwd to 'PRELIMINARY', the environement should be setup, installing Pytorch and relative needed moodules:
-   ``` source stup.sh ```
-   In case the venv must be activated for modifying files or working on the codebase, use the command: ``` run_env.sh ``` 
+2. After changing the cwd to 'PRELIMINARY', the environement should be setup, installing Pytorch and relative needed moodules, with the command:
+   ``` source stup.sh ```.  In case the venv must be activated for modifying files or working on the codebase, use the command: ``` run_env.sh ```.
 
 4. Then, make sure the 'data' folder(the CIFAR100 dataset acquired using Pytorch) lies in the directory, otherwise it will be installed during automatically execution.
 5. * For testing the basic classifiers comparison program, submit the correct slurm job with: ``` sbatch run.sbatch ```
