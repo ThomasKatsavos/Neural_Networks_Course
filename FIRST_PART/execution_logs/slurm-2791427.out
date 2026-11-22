@@ -1,0 +1,59 @@
+cwd: /home/t/tkatsavos/NN_DL/FIRST
+Start: Sat Nov 21 12:59:37 AM EET 2026
+[INFO] Device: cuda | 10 runs × 30 epochs
+
+[1/10] depth2_p0  (n_blocks=2, wd=0.0005, sched=constant, p=0.0)
+    → best 51.18% @ ep 29  (134s)
+
+[2/10] depth2_p4  (n_blocks=2, wd=0.0005, sched=constant, p=0.4)
+    → best 41.66% @ ep 28  (135s)
+
+[3/10] depth4_p0  (n_blocks=4, wd=0.0005, sched=constant, p=0.0)
+    → best 59.48% @ ep 28  (137s)
+
+[4/10] depth4_p4  (n_blocks=4, wd=0.0005, sched=constant, p=0.4)
+    → best 40.23% @ ep 30  (137s)
+
+[5/10] cosine_p0  (n_blocks=3, wd=0.0005, sched=cosine, p=0.0)
+    → best 60.86% @ ep 29  (136s)
+
+[6/10] cosine_p4  (n_blocks=3, wd=0.0005, sched=cosine, p=0.4)
+    → best 49.35% @ ep 28  (136s)
+
+[7/10] step_p0  (n_blocks=3, wd=0.0005, sched=step, p=0.0)
+    → best 56.21% @ ep 24  (136s)
+
+[8/10] step_p4  (n_blocks=3, wd=0.0005, sched=step, p=0.4)
+    → best 39.57% @ ep 29  (136s)
+
+[9/10] wd5e3_p0  (n_blocks=3, wd=0.005, sched=constant, p=0.0)
+    → best 48.55% @ ep 29  (135s)
+
+[10/10] wd5e3_p4  (n_blocks=3, wd=0.005, sched=constant, p=0.4)
+    → best 27.47% @ ep 30  (135s)
+
+============================================
+DEPTH
+============================================
+                     p=0.0         p=0.4
+2                   51.18%        41.66%
+3 ***             BASELINE      BASELINE
+4                   59.48%        40.23%
+
+============================================
+LR SCHEDULE
+============================================
+                     p=0.0         p=0.4
+constant ***      BASELINE      BASELINE
+cosine              60.86%        49.35%
+step                56.21%        39.57%
+
+============================================
+WEIGHT DECAY
+============================================
+                     p=0.0         p=0.4
+5e-4 ***          BASELINE      BASELINE
+5e-3                48.55%        27.47%
+
+[INFO] Done.
+End: Sat Nov 21 01:22:38 AM EET 2026
