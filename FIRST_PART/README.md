@@ -52,10 +52,10 @@ Flatten(2048) → Linear(2048, 512) → ReLU → Dropout(0.5) → Linear(512, 10
 ## Εκτέλεση
 
 ```bash
-# Κύριο benchmark (9 runs, ~40 min)
+# Κύριο benchmark (9 runs, ~21 min)
 python3 cnn_benchmark.py
 
-# Ablation study (10 runs, ~36 min)
+# Ablation study (10 runs, ~23 min)
 python3 ablation_study.py
 ```
 
@@ -70,44 +70,45 @@ sbatch run_ablation.slurm
 
 ## Αποτελέσματα
 
-### Κύριο benchmark (baseline 57.97%)
+### Κύριο benchmark (baseline 58.52%)
 
 | Poisoning | p=0.2 | p=0.4 | p=0.6 | p=0.8 |
 |---|---|---|---|---|
-| Symmetric | 53.05% | 45.37% | 24.16% | 5.81% |
-| Asymmetric | 54.74% | 47.83% | 33.37% | 15.11% |
+| Symmetric | 52.82% | 46.43% | 24.08% | 5.62% |
+| Asymmetric | 54.17% | 47.76% | 33.62% | 14.68% |
 
 **Κύρια ευρήματα:**
 
 - Το asymmetric poisoning είναι **λιγότερο** καταστροφικό από το symmetric στο CNN. Εξήγηση: το semantic noise είναι συνεπές, άρα το δίκτυο μαθαίνει χρήσιμα features της υπερ-κλάσης ακόμη και από λάθος labels.
-- Στο p=0.6 και p=0.8, η διαφορά μεταξύ των δύο τύπων φτάνει τις 16 ποσοστιαίες μονάδες.
+- Στο p=0.6 η διαφορά μεταξύ των δύο τύπων είναι 9.5 ποσοστιαίες μονάδες, ενώ στο p=0.8 φτάνει τις 9.1 μονάδες.
 
 ### Ablation study
 
 | Depth | p=0.0 | p=0.4 |
 |---|---|---|
-| 2 blocks | 52.33% | 41.40% |
-| **3 blocks (baseline)** | **57.97%** | **45.37%** |
-| 4 blocks | 59.21% | 39.90% |
+| 2 blocks | 51.18% | 41.66% |
+| **3 blocks (baseline)** | **58.52%** | **46.43%** |
+| 4 blocks | 59.48% | 40.23% |
 
 | LR Schedule | p=0.0 | p=0.4 |
 |---|---|---|
-| constant (baseline) | 57.97% | 45.37% |
-| **cosine** | **61.48%** | **49.93%** |
-| step | 56.20% | 39.62% |
+| constant (baseline) | 58.52% | 46.43% |
+| **cosine** | **60.86%** | **49.35%** |
+| step | 56.21% | 39.57% |
 
 | Weight Decay | p=0.0 | p=0.4 |
 |---|---|---|
-| 5e-4 (baseline) | 57.97% | 45.37% |
-| 5e-3 | 49.52% | 26.72% |
+| 5e-4 (baseline) | 58.52% | 46.43% |
+| 5e-3 | 48.55% | 27.47% |
 
 **Συμπεράσματα ablation:**
 
-- Το βάθος 3 είναι το βέλτιστο trade-off· το βάθος 4 αυξάνει μεν το clean accuracy αλλά μειώνει την ανθεκτικότητα στο poisoning.
-- Το cosine LR schedule δίνει +3.5% clean accuracy και +4.6% robustness χωρίς κόστος.
-- Υπερβολικό weight decay (5e-3) οδηγεί σε underfitting και καταστροφική πτώση robustness.
+- Το βάθος 3 είναι το βέλτιστο trade-off· το βάθος 4 αυξάνει μεν το clean accuracy (59.48% έναντι 58.52%) αλλά μειώνει την ανθεκτικότητα στο poisoning (40.23% έναντι 46.43%).
+- Το cosine LR schedule δίνει +2.3% clean accuracy και +2.9% robustness χωρίς κόστος.
+- Υπερβολικό weight decay (5e-3) οδηγεί σε underfitting (-10% clean, -19% poisoned) και καταστροφική πτώση robustness.
 
 ## Αναφορές
 
 - Simonyan & Zisserman. *Very Deep Convolutional Networks for Large-Scale Image Recognition.* ICLR 2015.
 - Ioffe & Szegedy. *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift.* ICML 2015.
+- Srivastava et al. *Dropout: A Simple Way to Prevent Neural Networks from Overfitting.* JMLR 2014.
