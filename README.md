@@ -5,7 +5,7 @@ This repository contains the code and project implementations for the
 
 The project covers the design, training and evaluation of neural network
 classifiers on the CIFAR-100 dataset, along with the scripts required for
-execution on the "Aristoteles" HPC cluster (partition `ampere`, NVIDIA A100).
+execution on the "Aristotelis" HPC cluster (partition `ampere`, NVIDIA A100).
 
 ## Repository structure
 
@@ -32,27 +32,15 @@ self-contained (own scripts, own SLURM job files).
 
 ## Execution
 
-**Intermediate assignment**
+###  *** First follow steps 1-3 from 'PRELIMINARY' folder! ***
+
+
+
+On the Aristotelis cluster, submit the corresponding SLURM scripts from PRELIMINARY or FIRST_PART folders, e.g.:
 
 ```
-cd PRELIMINARY
-python3 compare_classifiers.py
-python3 label_poisoning_benchmark.py
-```
-
-**First assignment**
-
-```
-cd FIRST
-python3 cnn_benchmark.py      #  ~20 min
-python3 ablation_study.py     #  ~23 min
-```
-
-On the Aristoteles cluster, submit the corresponding SLURM scripts:
-
-```
-sbatch run_cnn.slurm
-sbatch run_ablation.slurm
+sbatch run.sbatch
+sbatch run_ablation.sbatch
 ```
 
 ## Author
