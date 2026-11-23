@@ -51,6 +51,7 @@ Flatten(2048) → Linear(2048, 512) → ReLU → Dropout(0.5) → Linear(512, 10
 
 ## Εκτέλεση
 
+Γενικά(δεν δοκιμάστηκε απευθείας σε προσωπικό υπολογιστή):
 ```bash
 # Κύριο benchmark (9 runs, ~21 min)
 python3 cnn_benchmark.py
@@ -59,14 +60,15 @@ python3 cnn_benchmark.py
 python3 ablation_study.py
 ```
 
-Σε HPC cluster με SLURM:
+Σε HPC cluster με SLURM, ΑΦΟΥ έχουμε κάνει τα βήματα 1-3 από τις οδηγίες εκτέλεσης του φακέλου PRELIMINARY σχετικά με το setup και
+έχουμε επιβεβαιώσει την ύπαρξη ή μη φακέλου 'data' με το CIFAR-100:
 
 ```bash
-sbatch run_cnn.slurm
-sbatch run_ablation.slurm
+sbatch run.sbatch
+sbatch run_ablation.sbatch
 ```
 
-Απαιτείται PyTorch με CUDA. Για το prediction grid απαιτείται επίσης `matplotlib`.
+Απαιτείται PyTorch με CUDA. Για το prediction grid απαιτείται επίσης `matplotlib`. Στον cluster εγκαθίστανται αυτόματα με τις σωστές οδηγίες.
 
 ## Αποτελέσματα
 
